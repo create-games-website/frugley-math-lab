@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FRUGLEY MATH LAB</title>
+<style>
+:root{--lime:#b7ff36;--bg:#090d0b;--panel:#141c17;--muted:#a9b8ac}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#1a2a1c,#090d0b 55%);color:#f4fff5;font:16px/1.5 system-ui,Arial,sans-serif}
+header{padding:42px 20px 26px;text-align:center;border-bottom:1px solid #26352a}
+h1{margin:0;color:var(--lime);font-size:clamp(2rem,7vw,4rem);letter-spacing:2px}
+header p{color:var(--muted);margin:8px auto 0;max-width:650px}
+main{max-width:1100px;margin:auto;padding:24px 18px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+input,select{background:#101812;border:1px solid #405345;color:white;border-radius:10px;padding:12px;font:inherit}
+input{flex:1;min-width:200px}
+h2{color:var(--lime);margin:26px 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px}
+a.tile{display:block;text-decoration:none;color:white;background:var(--panel);border:1px solid #2b3b30;border-radius:14px;padding:16px;transition:.15s}
+a.tile:hover{border-color:var(--lime);transform:translateY(-2px)}
+.tile b{display:block;font-size:1.08rem}.tile span{color:var(--muted);font-size:.9rem}
+footer{text-align:center;color:var(--muted);padding:30px 15px}
+.note{background:#121b15;border-left:4px solid var(--lime);padding:12px 15px;border-radius:8px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+<h1>FRUGLEY MATH LAB</h1>
+<p>Your gaming and entertainment hub — discover games, sports, music, and useful sites.</p>
+</header>
+<main>
+<div class="tools">
+<input id="search" type="search" placeholder="Search games and apps..." aria-label="Search games and apps">
+<select id="category" aria-label="Filter category">
+<option value="all">All categories</option><option>Games</option><option>Sports</option><option>Music</option><option>Websites</option>
+</select>
+</div>
+<p class="note">Choose a tile to open its official website. Some games may require an account or may not work on every device.</p>
+<section><h2>Games</h2><div class="grid" id="games">
+<a class="tile" data-cat="Games" href="https://poki.com/" target="_blank" rel="noopener"><b>Poki</b><span>Browser games</span></a>
+<a class="tile" data-cat="Games" href="https://www.coolmathgames.com/" target="_blank" rel="noopener"><b>Coolmath Games</b><span>Puzzles and arcade games</span></a>
+<a class="tile" data-cat="Games" href="https://www.roblox.com/" target="_blank" rel="noopener"><b>Roblox</b><span>Games and experiences</span></a>
+<a class="tile" data-cat="Games" href="https://www.minecraft.net/" target="_blank" rel="noopener"><b>Minecraft</b><span>Official Minecraft site</span></a>
+<a class="tile" data-cat="Games" href="https://www.fallguys.com/" target="_blank" rel="noopener"><b>Fall Guys</b><span>Official game site</span></a>
+<a class="tile" data-cat="Games" href="https://www.fortnite.com/" target="_blank" rel="noopener"><b>Fortnite</b><span>Official game site</span></a>
+<a class="tile" data-cat="Games" href="https://www.subway surfers.com/" target="_blank" rel="noopener"><b>Subway Surfers</b><span>Official game site</span></a>
+<a class="tile" data-cat="Games" href="https://www.fridaynightfunkin.net/" target="_blank" rel="noopener"><b>Friday Night Funkin'</b><span>Music rhythm game</span></a>
+<a class="tile" data-cat="Games" href="https://www.crossyroad.com/" target="_blank" rel="noopener"><b>Crossy Road</b><span>Arcade game</span></a>
+<a class="tile" data-cat="Games" href="https://www.templerun.com/" target="_blank" rel="noopener"><b>Temple Run</b><span>Adventure runner</span></a>
+<a class="tile" data-cat="Games" href="https://www.geometrydash.com/" target="_blank" rel="noopener"><b>Geometry Dash</b><span>Official game site</span></a>
+<a class="tile" data-cat="Games" href="https://www.among.us/" target="_blank" rel="noopener"><b>Among Us</b><span>Official game site</span></a>
+</div></section>
+<section><h2>Sports</h2><div class="grid">
+<a class="tile" data-cat="Sports" href="https://www.ea.com/sports" target="_blank" rel="noopener"><b>EA SPORTS</b><span>Official sports games</span></a>
+<a class="tile" data-cat="Sports" href="https://www.nfl.com/" target="_blank" rel="noopener"><b>NFL</b><span>Football news and games</span></a>
+<a class="tile" data-cat="Sports" href="https://www.nba.com/" target="_blank" rel="noopener"><b>NBA</b><span>Basketball</span></a>
+<a class="tile" data-cat="Sports" href="https://www.fifa.com/" target="_blank" rel="noopener"><b>FIFA</b><span>Soccer</span></a>
+<a class="tile" data-cat="Sports" href="https://www.rocketleague.com/" target="_blank" rel="noopener"><b>Rocket League</b><span>Car soccer</span></a>
+</div></section>
+<section><h2>Music</h2><div class="grid">
+<a class="tile" data-cat="Music" href="https://music.youtube.com/" target="_blank" rel="noopener"><b>YouTube Music</b><span>Listen to music</span></a>
+<a class="tile" data-cat="Music" href="https://open.spotify.com/" target="_blank" rel="noopener"><b>Spotify</b><span>Music and podcasts</span></a>
+<a class="tile" data-cat="Music" href="https://music.apple.com/" target="_blank" rel="noopener"><b>Apple Music</b><span>Music streaming</span></a>
+<a class="tile" data-cat="Music" href="https://soundcloud.com/" target="_blank" rel="noopener"><b>SoundCloud</b><span>Discover music</span></a>
+<a class="tile" data-cat="Music" href="https://www.pandora.com/" target="_blank" rel="noopener"><b>Pandora</b><span>Music radio</span></a>
+</div></section>
+<section><h2>Websites</h2><div class="grid">
+<a class="tile" data-cat="Websites" href="https://www.google.com/" target="_blank" rel="noopener"><b>Google</b><span>Search the web</span></a>
+<a class="tile" data-cat="Websites" href="https://www.youtube.com/" target="_blank" rel="noopener"><b>YouTube</b><span>Videos</span></a>
+<a class="tile" data-cat="Websites" href="https://chatgpt.com/" target="_blank" rel="noopener"><b>ChatGPT</b><span>Ask questions and learn</span></a>
+<a class="tile" data-cat="Websites" href="https://www.easyfun.gg/" target="_blank" rel="noopener"><b>EasyFun.gg</b><span>Cloud gaming platform</span></a>
+<a class="tile" data-cat="Websites" href="https://now.gg/" target="_blank" rel="noopener"><b>now.gg</b><span>Cloud gaming platform</span></a>
+</div></section>
+</main>
+<footer>FRUGLEY MATH LAB • Made for fun and discovery</footer>
+<script>
+const search=document.getElementById('search'), category=document.getElementById('category');
+function filter(){const q=search.value.toLowerCase(), c=category.value;document.querySelectorAll('.tile').forEach(tile=>{const match=tile.innerText.toLowerCase().includes(q);const cat=tile.dataset.cat;tile.style.display=match&&(c==='all'||c===cat)?'block':'none';});}
+search.addEventListener('input',filter);category.addEventListener('change',filter);
+</script>
+</body></html>
