@@ -75,64 +75,44 @@ a{color:#8dff75}
 </div>
 </section>
 
+
 <section id="sports">
-<h2>⚽ Sports Zone</h2>
-<div class="cards">
-<div class="card"><h3>🏈 NFL</h3><p>Football fun and updates.</p></div>
-<div class="card"><h3>🏀 NBA</h3><p>Basketball fun and updates.</p></div>
-<div class="card"><h3>⚽ Soccer</h3><p>Soccer games and fun.</p></div>
-<div class="card"><h3>🏎️ Racing</h3><p>Racing game zone.</p></div>
+<h2>🏆 CASH'S SPORTS ARCADE</h2>
+
+<div class="game">
+<h2>🏈 Football Challenge</h2>
+<p>Click to throw the football!</p>
+<p id="footballScore">Touchdowns: 0</p>
+<button onclick="football()">THROW FOOTBALL 🏈</button>
+<p id="footballResult">Ready to play?</p>
+</div>
+
+<div class="game">
+<h2>🏀 Basketball Challenge</h2>
+<p>Try to make a basket!</p>
+<p id="basketScore">Baskets: 0</p>
+<button onclick="basketball()">SHOOT 🏀</button>
+<p id="basketResult">Take your shot!</p>
+</div>
+
+<div class="game">
+<h2>⚽ Soccer Challenge</h2>
+<p>Try to score a goal!</p>
+<p id="soccerScore">Goals: 0</p>
+<button onclick="soccer()">KICK ⚽</button>
+<p id="soccerResult">Ready to kick?</p>
+</div>
+
+<div class="game">
+<h2>🏎️ Racing Challenge</h2>
+<p>Click as many times as you can in 10 seconds!</p>
+<p id="raceScore">Points: 0</p>
+<button onclick="startRace()">START RACE</button>
+<button onclick="raceClick()">🏎️ GO!</button>
+<p id="raceResult">Ready, racer?</p>
 </div>
 </section>
 
-<section id="music">
-<h2>🎵 Music Zone</h2>
-<div class="cards">
-<div class="card"><h3>YouTube Music</h3><p>Music streaming service.</p><a href="https://music.youtube.com/" target="_blank" rel="noopener">Open YouTube Music</a></div>
-<div class="card"><h3>Spotify</h3><p>Listen to music.</p><a href="https://open.spotify.com/" target="_blank" rel="noopener">Open Spotify</a></div>
-<div class="card"><h3>SoundCloud</h3><p>Discover music.</p><a href="https://soundcloud.com/" target="_blank" rel="noopener">Open SoundCloud</a></div>
-</div>
-</section>
-
-<section id="fortnite">
-<h2>🏝️ Fortnite Zone</h2>
-<div class="card">
-<h3>Fortnite Battle Royale</h3>
-<p>Fortnite requires an Epic Games account. The official game cannot be hosted directly inside this website.</p>
-<a href="https://www.fortnite.com/" target="_blank" rel="noopener"><button>Fortnite Official Site</button></a>
-<a href="https://www.epicgames.com/id/login" target="_blank" rel="noopener">Epic Games Login</a>
-</div>
-</section>
-</main>
-
-<footer>FRUGLEY MATH LAB © 2026 | Have fun! 🎮</footer>
-
-<script>
-function showSection(id){
- document.getElementById(id).scrollIntoView({behavior:"smooth"});
-}
-function searchItems(){
- const q=document.getElementById("search").value.toLowerCase();
- document.querySelectorAll(".card").forEach(card=>{
-  card.style.display=card.innerText.toLowerCase().includes(q)?"":"none";
- });
-}
-let secret=Math.floor(Math.random()*20)+1;
-function checkGuess(){
- const n=Number(document.getElementById("guess").value);
- const out=document.getElementById("guessResult");
- if(!n||n<1||n>20){out.textContent="Enter a number from 1 to 20!";return;}
- if(n===secret)out.textContent="🎉 You got it!";
- else out.textContent=n<secret?"Too low! Try again.":"Too high! Try again.";
-}
-function newGuess(){
- secret=Math.floor(Math.random()*20)+1;
- document.getElementById("guess").value="";
- document.getElementById("guessResult").textContent="New number ready!";
-}
-let symbols=["🍕","🍕","⚽","⚽","🎮","🎮","⭐","⭐","🚀","🚀","🎵","🎵","🐱","🐱","🏀","🏀"];
-let first=null,lock=false,matches=0;
-function startMemory(){
  const board=document.getElementById("memory");
  board.innerHTML="";
  first=null;lock=false;matches=0;
