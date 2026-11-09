@@ -1,81 +1,191 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FRUGLEY MATH LAB</title>
 <style>
-:root{--lime:#b7ff36;--bg:#090d0b;--panel:#141c17;--muted:#a9b8ac}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#1a2a1c,#090d0b 55%);color:#f4fff5;font:16px/1.5 system-ui,Arial,sans-serif}
-header{padding:42px 20px 26px;text-align:center;border-bottom:1px solid #26352a}
-h1{margin:0;color:var(--lime);font-size:clamp(2rem,7vw,4rem);letter-spacing:2px}
-header p{color:var(--muted);margin:8px auto 0;max-width:650px}
-main{max-width:1100px;margin:auto;padding:24px 18px}
-.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
-input,select{background:#101812;border:1px solid #405345;color:white;border-radius:10px;padding:12px;font:inherit}
-input{flex:1;min-width:200px}
-h2{color:var(--lime);margin:26px 0 12px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px}
-a.tile{display:block;text-decoration:none;color:white;background:var(--panel);border:1px solid #2b3b30;border-radius:14px;padding:16px;transition:.15s}
-a.tile:hover{border-color:var(--lime);transform:translateY(-2px)}
-.tile b{display:block;font-size:1.08rem}.tile span{color:var(--muted);font-size:.9rem}
-footer{text-align:center;color:var(--muted);padding:30px 15px}
-.note{background:#121b15;border-left:4px solid var(--lime);padding:12px 15px;border-radius:8px;color:var(--muted)}
+*{box-sizing:border-box}
+body{margin:0;background:#080d08;color:white;font-family:Arial,sans-serif}
+header{text-align:center;padding:30px 15px;background:#101c10;border-bottom:3px solid #39ff14}
+h1{color:#39ff14;font-size:38px;margin:5px}
+header p{color:#c5ffc0}
+input{padding:13px;width:min(90%,450px);border-radius:10px;border:2px solid #39ff14;background:#101810;color:white;font-size:16px}
+nav{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:15px}
+button{background:#39ff14;color:#061006;border:0;border-radius:9px;padding:12px 18px;font-weight:bold;cursor:pointer;margin:4px}
+button:hover{background:#b0ff9e}
+main{max-width:1000px;margin:auto;padding:15px}
+h2{color:#39ff14;border-bottom:1px solid #286b20;padding-bottom:8px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.card{background:#142014;border:1px solid #39ff14;border-radius:12px;padding:17px;text-align:center}
+.card h3{margin-top:5px}
+.game{background:#101810;border:2px solid #39ff14;border-radius:12px;padding:20px;margin:15px 0;text-align:center}
+#memory{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:400px;margin:15px auto}
+.tile{font-size:26px;padding:18px 5px;background:#234323;color:white;border-radius:8px;cursor:pointer}
+#score{color:#39ff14;font-weight:bold}
+footer{text-align:center;padding:25px;color:#9bb99b}
+a{color:#8dff75}
 </style>
 </head>
 <body>
 <header>
-<h1>FRUGLEY MATH LAB</h1>
-<p>Your gaming and entertainment hub — discover games, sports, music, and useful sites.</p>
+<h1>🎮 FRUGLEY MATH LAB</h1>
+<p>Games • Sports • Music • Fun</p>
+<input id="search" placeholder="🔎 Search games and sections..." oninput="searchItems()">
 </header>
+
+<nav>
+<button onclick="showSection('games')">🎮 Games</button>
+<button onclick="showSection('sports')">⚽ Sports</button>
+<button onclick="showSection('music')">🎵 Music</button>
+<button onclick="showSection('fortnite')">🏝️ Fortnite</button>
+</nav>
+
 <main>
-<div class="tools">
-<input id="search" type="search" placeholder="Search games and apps..." aria-label="Search games and apps">
-<select id="category" aria-label="Filter category">
-<option value="all">All categories</option><option>Games</option><option>Sports</option><option>Music</option><option>Websites</option>
-</select>
+<section id="games">
+<h2>🎮 Play Games Here</h2>
+<div class="cards">
+<div class="card"><h3>🧠 Memory Match</h3><p>Match the emoji pairs!</p><button onclick="document.getElementById('memoryGame').scrollIntoView()">Play</button></div>
+<div class="card"><h3>🔢 Number Guess</h3><p>Guess the secret number.</p><button onclick="document.getElementById('guessGame').scrollIntoView()">Play</button></div>
+<div class="card"><h3>⚡ Reaction Test</h3><p>Test your reaction speed.</p><button onclick="document.getElementById('reactionGame').scrollIntoView()">Play</button></div>
 </div>
-<p class="note">Choose a tile to open its official website. Some games may require an account or may not work on every device.</p>
-<section><h2>Games</h2><div class="grid" id="games">
-<a class="tile" data-cat="Games" href="https://poki.com/" target="_blank" rel="noopener"><b>Poki</b><span>Browser games</span></a>
-<a class="tile" data-cat="Games" href="https://www.coolmathgames.com/" target="_blank" rel="noopener"><b>Coolmath Games</b><span>Puzzles and arcade games</span></a>
-<a class="tile" data-cat="Games" href="https://www.roblox.com/" target="_blank" rel="noopener"><b>Roblox</b><span>Games and experiences</span></a>
-<a class="tile" data-cat="Games" href="https://www.minecraft.net/" target="_blank" rel="noopener"><b>Minecraft</b><span>Official Minecraft site</span></a>
-<a class="tile" data-cat="Games" href="https://www.fallguys.com/" target="_blank" rel="noopener"><b>Fall Guys</b><span>Official game site</span></a>
-<a class="tile" data-cat="Games" href="https://www.fortnite.com/" target="_blank" rel="noopener"><b>Fortnite</b><span>Official game site</span></a>
-<a class="tile" data-cat="Games" href="https://www.subway surfers.com/" target="_blank" rel="noopener"><b>Subway Surfers</b><span>Official game site</span></a>
-<a class="tile" data-cat="Games" href="https://www.fridaynightfunkin.net/" target="_blank" rel="noopener"><b>Friday Night Funkin'</b><span>Music rhythm game</span></a>
-<a class="tile" data-cat="Games" href="https://www.crossyroad.com/" target="_blank" rel="noopener"><b>Crossy Road</b><span>Arcade game</span></a>
-<a class="tile" data-cat="Games" href="https://www.templerun.com/" target="_blank" rel="noopener"><b>Temple Run</b><span>Adventure runner</span></a>
-<a class="tile" data-cat="Games" href="https://www.geometrydash.com/" target="_blank" rel="noopener"><b>Geometry Dash</b><span>Official game site</span></a>
-<a class="tile" data-cat="Games" href="https://www.among.us/" target="_blank" rel="noopener"><b>Among Us</b><span>Official game site</span></a>
-</div></section>
-<section><h2>Sports</h2><div class="grid">
-<a class="tile" data-cat="Sports" href="https://www.ea.com/sports" target="_blank" rel="noopener"><b>EA SPORTS</b><span>Official sports games</span></a>
-<a class="tile" data-cat="Sports" href="https://www.nfl.com/" target="_blank" rel="noopener"><b>NFL</b><span>Football news and games</span></a>
-<a class="tile" data-cat="Sports" href="https://www.nba.com/" target="_blank" rel="noopener"><b>NBA</b><span>Basketball</span></a>
-<a class="tile" data-cat="Sports" href="https://www.fifa.com/" target="_blank" rel="noopener"><b>FIFA</b><span>Soccer</span></a>
-<a class="tile" data-cat="Sports" href="https://www.rocketleague.com/" target="_blank" rel="noopener"><b>Rocket League</b><span>Car soccer</span></a>
-</div></section>
-<section><h2>Music</h2><div class="grid">
-<a class="tile" data-cat="Music" href="https://music.youtube.com/" target="_blank" rel="noopener"><b>YouTube Music</b><span>Listen to music</span></a>
-<a class="tile" data-cat="Music" href="https://open.spotify.com/" target="_blank" rel="noopener"><b>Spotify</b><span>Music and podcasts</span></a>
-<a class="tile" data-cat="Music" href="https://music.apple.com/" target="_blank" rel="noopener"><b>Apple Music</b><span>Music streaming</span></a>
-<a class="tile" data-cat="Music" href="https://soundcloud.com/" target="_blank" rel="noopener"><b>SoundCloud</b><span>Discover music</span></a>
-<a class="tile" data-cat="Music" href="https://www.pandora.com/" target="_blank" rel="noopener"><b>Pandora</b><span>Music radio</span></a>
-</div></section>
-<section><h2>Websites</h2><div class="grid">
-<a class="tile" data-cat="Websites" href="https://www.google.com/" target="_blank" rel="noopener"><b>Google</b><span>Search the web</span></a>
-<a class="tile" data-cat="Websites" href="https://www.youtube.com/" target="_blank" rel="noopener"><b>YouTube</b><span>Videos</span></a>
-<a class="tile" data-cat="Websites" href="https://chatgpt.com/" target="_blank" rel="noopener"><b>ChatGPT</b><span>Ask questions and learn</span></a>
-<a class="tile" data-cat="Websites" href="https://www.easyfun.gg/" target="_blank" rel="noopener"><b>EasyFun.gg</b><span>Cloud gaming platform</span></a>
-<a class="tile" data-cat="Websites" href="https://now.gg/" target="_blank" rel="noopener"><b>now.gg</b><span>Cloud gaming platform</span></a>
-</div></section>
+
+<div class="game" id="memoryGame">
+<h2>🧠 Memory Match</h2>
+<p>Find all the matching pairs!</p>
+<div id="memory"></div>
+<p id="memoryStatus">Matches: 0 / 8</p>
+<button onclick="startMemory()">New Game</button>
+</div>
+
+<div class="game" id="guessGame">
+<h2>🔢 Number Guess</h2>
+<p>I'm thinking of a number from 1 to 20.</p>
+<input id="guess" type="number" min="1" max="20" placeholder="Your guess">
+<button onclick="checkGuess()">Guess!</button>
+<p id="guessResult">Good luck!</p>
+<button onclick="newGuess()">New Number</button>
+</div>
+
+<div class="game" id="reactionGame">
+<h2>⚡ Reaction Test</h2>
+<p id="reactionText">Press Start, wait for green, then click!</p>
+<button id="reactionButton" onclick="reactionClick()">Start</button>
+<p id="reactionResult"></p>
+</div>
+</section>
+
+<section id="sports">
+<h2>⚽ Sports Zone</h2>
+<div class="cards">
+<div class="card"><h3>🏈 NFL</h3><p>Football fun and updates.</p></div>
+<div class="card"><h3>🏀 NBA</h3><p>Basketball fun and updates.</p></div>
+<div class="card"><h3>⚽ Soccer</h3><p>Soccer games and fun.</p></div>
+<div class="card"><h3>🏎️ Racing</h3><p>Racing game zone.</p></div>
+</div>
+</section>
+
+<section id="music">
+<h2>🎵 Music Zone</h2>
+<div class="cards">
+<div class="card"><h3>YouTube Music</h3><p>Music streaming service.</p><a href="https://music.youtube.com/" target="_blank" rel="noopener">Open YouTube Music</a></div>
+<div class="card"><h3>Spotify</h3><p>Listen to music.</p><a href="https://open.spotify.com/" target="_blank" rel="noopener">Open Spotify</a></div>
+<div class="card"><h3>SoundCloud</h3><p>Discover music.</p><a href="https://soundcloud.com/" target="_blank" rel="noopener">Open SoundCloud</a></div>
+</div>
+</section>
+
+<section id="fortnite">
+<h2>🏝️ Fortnite Zone</h2>
+<div class="card">
+<h3>Fortnite Battle Royale</h3>
+<p>Fortnite requires an Epic Games account. The official game cannot be hosted directly inside this website.</p>
+<a href="https://www.fortnite.com/" target="_blank" rel="noopener"><button>Fortnite Official Site</button></a>
+<a href="https://www.epicgames.com/id/login" target="_blank" rel="noopener">Epic Games Login</a>
+</div>
+</section>
 </main>
-<footer>FRUGLEY MATH LAB • Made for fun and discovery</footer>
+
+<footer>FRUGLEY MATH LAB © 2026 | Have fun! 🎮</footer>
+
 <script>
-const search=document.getElementById('search'), category=document.getElementById('category');
-function filter(){const q=search.value.toLowerCase(), c=category.value;document.querySelectorAll('.tile').forEach(tile=>{const match=tile.innerText.toLowerCase().includes(q);const cat=tile.dataset.cat;tile.style.display=match&&(c==='all'||c===cat)?'block':'none';});}
-search.addEventListener('input',filter);category.addEventListener('change',filter);
+function showSection(id){
+ document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+function searchItems(){
+ const q=document.getElementById("search").value.toLowerCase();
+ document.querySelectorAll(".card").forEach(card=>{
+  card.style.display=card.innerText.toLowerCase().includes(q)?"":"none";
+ });
+}
+let secret=Math.floor(Math.random()*20)+1;
+function checkGuess(){
+ const n=Number(document.getElementById("guess").value);
+ const out=document.getElementById("guessResult");
+ if(!n||n<1||n>20){out.textContent="Enter a number from 1 to 20!";return;}
+ if(n===secret)out.textContent="🎉 You got it!";
+ else out.textContent=n<secret?"Too low! Try again.":"Too high! Try again.";
+}
+function newGuess(){
+ secret=Math.floor(Math.random()*20)+1;
+ document.getElementById("guess").value="";
+ document.getElementById("guessResult").textContent="New number ready!";
+}
+let symbols=["🍕","🍕","⚽","⚽","🎮","🎮","⭐","⭐","🚀","🚀","🎵","🎵","🐱","🐱","🏀","🏀"];
+let first=null,lock=false,matches=0;
+function startMemory(){
+ const board=document.getElementById("memory");
+ board.innerHTML="";
+ first=null;lock=false;matches=0;
+ document.getElementById("memoryStatus").textContent="Matches: 0 / 8";
+ symbols.sort(()=>Math.random()-.5);
+ symbols.forEach(symbol=>{
+  const tile=document.createElement("button");
+  tile.className="tile";tile.textContent="❔";
+  tile.dataset.symbol=symbol;
+  tile.onclick=()=>{
+   if(lock||tile.textContent!=="❔")return;
+   tile.textContent=symbol;
+   if(!first){first=tile;return;}
+   if(first.dataset.symbol===tile.dataset.symbol){
+    matches++;first=null;
+    document.getElementById("memoryStatus").textContent="Matches: "+matches+" / 8";
+    if(matches===8)document.getElementById("memoryStatus").textContent="🏆 You won!";
+   }else{
+    lock=true;const old=first;first=null;
+    setTimeout(()=>{old.textContent="❔";tile.textContent="❔";lock=false;},700);
+   }
+  };
+  board.appendChild(tile);
+ });
+}
+startMemory();
+
+let reactionReady=false,reactionStart=0,reactionTimer=null;
+function reactionClick(){
+ const btn=document.getElementById("reactionButton");
+ const out=document.getElementById("reactionResult");
+ if(!reactionReady){
+  clearTimeout(reactionTimer);
+  reactionReady=false;
+  btn.textContent="Wait...";
+  btn.style.background="#d99b20";
+  document.getElementById("reactionText").textContent="Wait until the button turns green!";
+  out.textContent="";
+  reactionTimer=setTimeout(()=>{
+   reactionReady=true;reactionStart=Date.now();
+   btn.textContent="CLICK NOW!";
+   btn.style.background="#39ff14";
+  },1500+Math.random()*3000);
+ }else{
+  const time=Date.now()-reactionStart;
+  reactionReady=false;
+  btn.textContent="Try Again";
+  btn.style.background="#39ff14";
+  document.getElementById("reactionText").textContent="Nice reaction!";
+  out.textContent="Your time: "+time+" milliseconds!";
+ }
+}
 </script>
-</body></html>
+</body>
+</html>
+
